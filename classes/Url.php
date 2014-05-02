@@ -42,4 +42,25 @@ class Url {
             }
         }
     }
+    
+    
+    public static function getCurrentUrl($remove = null){
+        self::getAll();
+        $out = array();
+        if (!empty($remove)) {
+            $remove = !is_array($remove) ? array($remove): $remove;
+            
+            foreach (self::$_params as $key => $value){
+                if(in_array($key, $remove)){
+                    unset(self::$_params[$key]);
+                }
+            }
+        }
+        
+        foreach (self::$_params as $key => $value){
+            $out[] = $key."=".$value;
+        }
+        
+        return "/?".implode("&", $out);
+    }
 }

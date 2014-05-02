@@ -18,6 +18,10 @@ if(empty($cat)){
     }else{
         $rows = $objCatalogue->getProducts($cat);
         
+        //crear objeto de Paging
+        $objPaging = new Paging($rows, 5);
+        $rows = $objPaging->getRecords();
+        
         require_once ("_header.php");
         
         ?>
@@ -45,13 +49,34 @@ if(!empty($rows)){
                width="<?php echo $width; ?>"/></a>
     </div>
     <div class="catalogue_wrapper_right">
-        
+        <h4>
+            <a href="/?page=catalogue-item&amp;;category=<?php echo $category['id']; ?>&amp;id=<?php echo $row['id']; ?>">
+            <?php echo Helper::encodeHTML($row['name'], 1)?>
+            </a>
+        </h4>
+        <h4>
+            Price: <?php echo Catalogue::$_currency; echo number_format($row['price'],2); ?>
+        </h4>
+        <p>
+            <?php echo Helper::shortenString(Helper::encodeHTML($row['descrption'])); ?>
+        </p>
+        <p>
+            <?php echo Basket::activButton($row['id']); ?>
+        </p>
     </div>
 </div>
 <?php
     }
+    
+    echo $objPaging->getPaging();
+}else {
+    ?>
+<p>
+    There are no products in this category
+</p>
+<?php
+    
 }
-        
         require_once ("_footer.php");
     }
 }

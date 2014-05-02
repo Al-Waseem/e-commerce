@@ -22,5 +22,11 @@ class Buisness extends Application {
     }
     
     
+    public function getVatRate(){
+        $buisness = $this->getBusiness();
+        return $buisness['vat_rate'];
+    }
+    
+    
     
 }

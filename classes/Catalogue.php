@@ -16,6 +16,7 @@ class Catalogue extends Application {
     private $_table = 'categories';
     private $_table_2 = 'products';
     public $_path = 'media/catalogue/';
+    public static $_currency = '&euro;';
 
 
     public function getCategories() {
@@ -35,6 +36,13 @@ class Catalogue extends Application {
         $sql = "SELECT * FROM `{$this->_table_2}` WHERE `CATEGORY` = '".$this->db->escape($cat)."' ORDER BY `DATE` DESC";
         
         return $this->db->fetchAll($sql);
+    }
+    
+    
+    public function getProduct($id) {
+        $sql = "SELECT * FROM `{$this->_table_2}` WHERE `id` = '".$this->db->escape($id)."'";
+        
+        return $this->db->fetchOne($sql);
     }
     
 }
