@@ -33,4 +33,10 @@ class Session {
             return isset($_SESSION[$name]) ? $_SESSION[$name] :null;
         }
     }
+    
+    public static function setSession($name = null, $value = null){
+        if(!empty($name) && !empty($value)){
+            $_SESSION[$name]= $value;
+        }
+    }
 }

@@ -91,6 +91,25 @@ class Form {
         }
         
     }
+    
+    
+    public function getPostArray($expected = NULL) {
+        
+        $out = array();
+        if($this->isPost()){
+            foreach ($_POST as $key => $value){
+                if(!empty($expected)){
+                    if(in_array($key, $expected)){
+                        $out[$key] = strip_tags($value);
+                    }
+                }  else {
+                    $out[$key] = strip_tags($value);
+                }
+            }
+        }
+        
+        return $out;
+    }
         
     
 }

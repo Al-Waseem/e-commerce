@@ -71,4 +71,36 @@ class Helper {
         }
         return $string;
     }
+    
+    
+    public static function redirect($url = NULL){
+        
+        if(!empty($url)){
+            header("Location: {$url}");
+            exit();
+        }
+        
+    }
+    
+    
+    public static function setDate($case = null, $date=null){
+        
+        $date = empty($date) ? time() : strtotime($date);
+        
+        switch ($case) {
+            case 1:
+                // 01/01/2010
+                return date('d/m/Y', $date);
+                break;
+            case 2:
+                //monday, 1st january 2010, 09:30:45
+                return date('l, js F Y , H:i:s' , $date);
+                break;
+            case 3:
+                return date('Y-d-m-H-i-s', $date);
+                break;
+            case 4:
+                return date('Y-m-d  H:i:s', $date);
+        }
+    }
 }

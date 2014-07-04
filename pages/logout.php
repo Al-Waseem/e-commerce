@@ -6,8 +6,6 @@
  * and open the template in the editor.
  */
 
-$objCatalogue = new Catalogue();
-$cats = $objCatalogue->getCategories();
+Login::logout(Login::$_login_front);
 
-$objBusiness = new Business();
-$business = $objBusiness->getBusiness();
+Login::restrictFront();

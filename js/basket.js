@@ -18,7 +18,7 @@ $(document).ready(function(){
                 });
             },
             error: function(data){
-                alert("Error occured");
+                alert("An error has occured");
             }
         });
         
@@ -34,7 +34,7 @@ $(document).ready(function(){
                initBinds();
            },
            error: function(data){
-               alert('Error occured');
+               alert('An error has occured');
            }
         });
     }
@@ -58,7 +58,7 @@ $(document).ready(function(){
                     
                 },
                 error: function(data){
-                    alert("Error occured");
+                    alert("An error has occured");
                 }
                 
             });
@@ -99,7 +99,7 @@ $(document).ready(function(){
                    refreshBigBasket();
                },
                error: function(){
-                   alert('Error occured');
+                   alert('An error has occured');
                }
            });
         });
@@ -118,14 +118,49 @@ $(document).ready(function(){
                 refreshSmallBasket();
             },
             error: function(){
-                alert('Error occured');
+                alert('An error has occured');
             }
             
         });
     }
     
 
+    // proceed to paypal
+    if($('.paypal').length > 0){
+        $('.paypal').click(function(){
+           var token = $(this).attr('id');
+           var image = "<div style=\"text-align:center\">";
+           image = image + "<img src=\"/images/loadinfo.net.gif";
+           image = image + " alt=\"Proceeding to PayPal\" />";
+           image = image + "<br />Please wait while we are redirecting you to PayPal ...";
+           image = image + "</div><div id=\"frm_pp\"</div>";
+           
+           $('#big_basket').fadeOut(200,function(){
+               $(this).html(image).fadeIn(200,function(){
+                   send2PP(token);
+               })
+           })
+           
+        });
+    }
     
+    
+    function send2PP(token){
+        $.ajax({
+           type: 'POST' ,
+           url: '/mod/paypal.php',
+           data: ({token : token}),
+           dataType: 'html',
+           success: function(data){
+               $('#frm_pp').html(data);
+               //submit form automatically
+               $('#frm_paypal').submit();
+           },
+           error: function(){
+               alert('An error has occured');
+           }
+        });
+    }
     
     
     

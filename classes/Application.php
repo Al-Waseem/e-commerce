@@ -19,4 +19,5 @@ class Application {
     {		
     	$this->db = new Dbase();
     }
+    
 }

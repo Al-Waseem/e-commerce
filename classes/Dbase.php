@@ -105,4 +105,56 @@ class Dbase {
     public function lastId() {
         return mysql_insert_id($this->_connectDB);
     }
+    
+    
+    public function prepareInsert($array = null){
+        if(!empty($array)){
+            foreach ($array as $key => $value) {
+                $this->_insert_keys[] = $key;
+                $this->_insert_values[] = $this->escape($value);
+            }
+        }
+    }
+    
+    public function insert($table = null) {
+        if(
+                !empty($table) && 
+                !empty($this->_insert_keys) && 
+                !empty($this->_insert_values)){
+            
+            $sql = "INSERT INTO `{$table}` (`";
+            $sql .= implode("`, `", $this->_insert_keys);
+            $sql .= "`) VALUES ('";
+            $sql .= implode("', '", $this->_insert_values);
+            $sql .= "')";
+            
+            if($this->query($sql)){
+                $this->_id = $this->lastId();
+                return true;
+            }
+            return false;
+        }
+    }
+    
+    
+    public function prepareUpdate($array = null) {
+        if(!empty($array)){
+            foreach ($array as $key => $value) {
+                $this->_update_sets[] = "`{$key}` = '".$this->escape($value)."'";
+                
+            }
+        }
+    }
+    
+    
+    
+    public function update($table = null, $id = NULL) {
+        if(!empty($id) && !empty($table) && !empty($this->_update_sets)){
+            $sql = "UPDATE `{$table}` SET ";
+            $sql .= implode(", ", $this->_update_sets);
+            $sql .= "WHERE `id` = '".$this->escape($id)."'";
+            
+            return $this->query($sql);
+        }
+    }
 }
