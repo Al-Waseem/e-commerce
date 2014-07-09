@@ -33,7 +33,11 @@ class Validation{
        "Password" => "Please chose a password",
        "confirm_password" => "Please confirm your password",
        "password_mismatch" => "passwords did not match",
-       "email_duplicate" => "This email address is already taken"
+       "email_duplicate" => "This email address is already taken",
+       "category" => "Please select the category",
+       "name" => "Please provide a name",
+       "description" => "Please provide a description",
+       "price" => "Please provide a price"
    );
    
    //list of expected fields

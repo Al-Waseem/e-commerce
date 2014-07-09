@@ -6,17 +6,7 @@
  * and open the template in the editor.
  */
 
-/**
- * Description of Core
- *
- * @author WASEEM
- */
-class Core {
+require_once ('../inc/autoload.php');
 
-    public function run() {
-        ob_start();
-        require_once(Url::getPage());
-        ob_get_flush();
-    }
-
-}
+$core = new Core();
+$core->run();

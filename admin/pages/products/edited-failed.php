@@ -5,11 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once ('_header.php');
+
+require_once ('template/_header.php');
 ?>
 
-<h1> Page Not Found </h1>
-<p>The page you are tring to access dose not exist or has been removed</p>
+<h1>Products  :: Edit</h1>
+<p>There was a problem updating this record.<br /></p>
+
 
 <?php
-require_once ('_footer.php');
+
+require_once ('template/_footer.php');

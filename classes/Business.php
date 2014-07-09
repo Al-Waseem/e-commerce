@@ -12,21 +12,18 @@
  * @author WASEEM
  */
 class Buisness extends Application {
-    
+
     private $_table = 'buisness';
-    
+
     public function getBusiness() {
         $sql = "SELECT * FROM `{$this->_table}` WHERE `ID` = 1";
-        
+
         return $this->db->fetchOne($sql);
     }
-    
-    
-    public function getVatRate(){
+
+    public function getVatRate() {
         $buisness = $this->getBusiness();
         return $buisness['vat_rate'];
     }
-    
-    
-    
+
 }

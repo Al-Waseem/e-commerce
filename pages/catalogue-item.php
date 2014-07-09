@@ -12,11 +12,11 @@ if(!empty($id)){
     $objCatalogue = new Catalogue();
     $product = $objCatalogue->getProduct($id);
     if(!empty($product)){
-        $category = $objCatalogue->getCategory($product['category']);
+        $categories = $objCatalogue->getCategory($product['category']);
         
         require_once('_header.php');
         
-        echo "<h1>Catalogue: ".$category['name']."</h1>";
+        echo "<h1>Catalogue: ".$categories['name']."</h1>";
         
         $image = !empty($product['image']) ? 'media/catalogue'.$product['image'] : null;
         if(!empty($image)){
@@ -29,7 +29,7 @@ if(!empty($id)){
         }
         
         echo "<div class=\"rgt\"><h3>".$product['name']."</h3>";
-        echo "<h4><strong>".Catalogue::$_currency." ".$product['price']."</strong></h4>";
+        echo "<h4><strong>".Catalogue::$_euro." ".$product['price']."</strong></h4>";
         echo Basket::activButton($product['id']);
         echo "</div></div>";
         echo "<div class=\"dev\"> &#160; </div>";

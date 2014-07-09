@@ -11,9 +11,9 @@ if(empty($cat)){
     require_once ("error.php");
 }else{
     $objCatalogue = new Catalogue();
-    $category = $objCatalogue->getCategories($cat);
+    $categories = $objCatalogue->getCategories($cat);
     
-    if(empty($category)){
+    if(empty($categories)){
         require_once ("error.php");
     }else{
         $rows = $objCatalogue->getProducts($cat);
@@ -26,7 +26,7 @@ if(empty($cat)){
         
         ?>
 
-<h1> Catalogue :: <?php echo$category['name'] ?></h1>
+<h1> Catalogue :: <?php echo$categories['name'] ?></h1>
 
 <?php
 
@@ -44,18 +44,18 @@ if(!empty($rows)){
         $width = $width > 120 ? 120 : $width;
         
         ?>
-        <a href="=/?page=catalogue-item&a&amp;categpry=<?php echo $category['id']; ?> &a&amp;id= 
+        <a href="=/?page=catalogue-item&a&amp;categpry=<?php echo $categories['id']; ?> &a&amp;id= 
            <?php echo $row['id']; ?> "><img src="<?php echo $image; ?> " alt="<?php echo Helper::encodeHTML($row['name'], 1); ?>" 
                width="<?php echo $width; ?>"/></a>
     </div>
     <div class="catalogue_wrapper_right">
         <h4>
-            <a href="/?page=catalogue-item&amp;;category=<?php echo $category['id']; ?>&amp;id=<?php echo $row['id']; ?>">
+            <a href="/?page=catalogue-item&amp;;category=<?php echo $categories['id']; ?>&amp;id=<?php echo $row['id']; ?>">
             <?php echo Helper::encodeHTML($row['name'], 1)?>
             </a>
         </h4>
         <h4>
-            Price: <?php echo Catalogue::$_currency; echo number_format($row['price'],2); ?>
+            Price: <?php echo Catalogue::$_euro; echo number_format($row['price'],2); ?>
         </h4>
         <p>
             <?php echo Helper::shortenString(Helper::encodeHTML($row['descrption'])); ?>

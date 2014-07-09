@@ -50,7 +50,7 @@ require_once ('_header.php');
                 <td><?php echo $item['name']; ?></td>
                 <td class="ta_r"><?php echo $session[$item['id']]['qty']; ?></td>
             
-            <td class="ta_r"><?php echo Catalogue::$_currency . " " ;
+            <td class="ta_r"><?php echo Catalogue::$_euro . " " ;
             echo number_format($objBasket->itemTotal($item['price'],$session[$item['id']]['qty']),2);
             ?>
             </td>
@@ -66,7 +66,7 @@ require_once ('_header.php');
                     Sub-total
                 </td>
                 <td colspan="2" class="br_td">
-                    <?php echo Catalogue::$_currency." ";
+                    <?php echo Catalogue::$_euro." ";
                             echo number_format($objBasket->_sub_total,2);
                     ?>
                 </td>
@@ -77,7 +77,7 @@ require_once ('_header.php');
                     IVA(<?php echo $objBasket->_vat_rate; ?>)
                 </td>
                 <td colspan="2" class="br_td">
-                    <?php echo Catalogue::$_currency." ";
+                    <?php echo Catalogue::$_euro." ";
                             echo number_format($objBasket->_vat,2);
                     ?>
                 </td>
@@ -88,7 +88,7 @@ require_once ('_header.php');
                     <strong>Total:</strong>
                 </td>
                 <td colspan="2" class="br_td">
-                    <strong><?php echo Catalogue::$_currency." ";
+                    <strong><?php echo Catalogue::$_euro." ";
                             echo number_format($objBasket->_total,2);
                             ?></strong>
                 </td>
